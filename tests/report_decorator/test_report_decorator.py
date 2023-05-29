@@ -4,7 +4,7 @@ from inventory_report.reports.simple_report import SimpleReport
 BLUE = "\033[36m"
 GREEN = "\033[32m"
 RED = "\033[31m"
-RESET = "\033[0m"
+RST = "\033[0m"
 
 product_data = [
         {
@@ -24,10 +24,10 @@ def test_decorar_relatorio():
     colored = ColoredReport(report)
 
     assert colored == (
-        f"{GREEN}Data de fabricação mais antiga:{RESET}"
-        f"{BLUE}2015-09-17{RESET}"
-        f"{GREEN}Data de validade mais próxima:{RESET}"
-        f"{BLUE}2025-09-17{RESET}"
-        f"{GREEN}Empresa com mais produtos:{RESET}"
-        f"{RED}Estrela{RESET}"
+        f"{GREEN}Data de fabricação mais antiga:{RST} {BLUE}2015-09-17{RST}"
+        # f"{BLUE}2015-09-17{RST}"
+        f"{GREEN}Data de validade mais próxima:{RST} {BLUE}2025-09-17{RST}"
+        # f"{BLUE}2025-09-17{RST}"
+        f"{GREEN}Empresa com mais produtos:{RST} {RED}Estrela{RST}"
+        # f"{RED}Estrela{RST}"
     )
