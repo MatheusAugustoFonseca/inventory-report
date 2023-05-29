@@ -20,14 +20,14 @@ product_data = [
 
 
 def test_decorar_relatorio():
-    report = SimpleReport.generate(product_data)
-    colored = ColoredReport(report)
+    report = SimpleReport()
+    colored = ColoredReport(report).generate(product_data)
 
     assert colored == (
-        f"{GREEN}Data de fabricação mais antiga:{RST} {BLUE}2015-09-17{RST}"
-        # f"{BLUE}2015-09-17{RST}"
-        f"{GREEN}Data de validade mais próxima:{RST} {BLUE}2025-09-17{RST}"
-        # f"{BLUE}2025-09-17{RST}"
-        f"{GREEN}Empresa com mais produtos:{RST} {RED}Estrela{RST}"
-        # f"{RED}Estrela{RST}"
+        f"{GREEN}Data de fabricação mais antiga:{RST} "
+        f"{BLUE}2015-09-17{RST}\n"
+        f"{GREEN}Data de validade mais próxima:{RST} "
+        f"{BLUE}2025-09-17{RST}\n"
+        f"{GREEN}Empresa com mais produtos:{RST} "
+        f"{RED}Estrela{RST}"
     )
