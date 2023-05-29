@@ -5,6 +5,7 @@ from collections import Counter
 class SimpleReport:
     @staticmethod
     def generate(products):
+        date_now = datetime.now().date()
         production_dates = list()
         expiration_dates = list()
         companies = list()
@@ -17,16 +18,16 @@ class SimpleReport:
             ).date()
             company = product.get("nome_da_empresa")
             production_dates.append(production_date)
-            if expiration_date_obj >= str(datetime.now().date()):
+            if expiration_date_obj >= date_now:
                 expiration_dates.append(expiration_date_obj)
             companies.append(company)
 
-            earliest_date = min(production_dates)
-            latest_expiry_date = min(production_dates)
+            earliest_date = min(production_dates, default=None)
+            latest_expiry_date = min(expiration_dates, default=None)
             most_products_company = Counter(companies).most_common(1)[0][0]
             report = (
                 f"Data de fabricação mais antiga: {earliest_date}\n"
-                f"Data de fabricação mais próxima: {latest_expiry_date}\n"
-                f"Empresa com mais produtos: {most_products_company}\n"
+                f"Data de validade mais próxima: {latest_expiry_date}\n"
+                f"Empresa com mais produtos: {most_products_company}"
             )
-            return report
+        return report
